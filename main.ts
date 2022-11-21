@@ -70,11 +70,16 @@ basic.forever(function () {
 })
 basic.forever(function () {
     if (pieton == true) {
+        basic.pause(5000)
         décompte = 30
-        basic.showNumber(décompte)
-        décompte += -1
+        if (feux_rouge == true) {
+            for (let index = 0; index < 10; index++) {
+                basic.showNumber(décompte)
+                basic.pause(500)
+                décompte += -1
+                basic.pause(500)
+            }
+        }
     }
-    if (décompte == 30) {
-        basic.clearScreen()
-    }
+    basic.clearScreen()
 })
