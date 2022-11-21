@@ -21,7 +21,7 @@ function feux_jaune () {
 }
 input.onButtonPressed(Button.A, function () {
     pieton = true
-    basic.pause(20000)
+    basic.pause(12000)
     pieton = false
 })
 function Feux_vert () {
@@ -47,16 +47,6 @@ function eteindre_led_orange_pieton () {
     pins.digitalWritePin(DigitalPin.P8, 0)
 }
 basic.forever(function () {
-    led_orange_pieton()
-    Feux_vert()
-    basic.pause(5000)
-    eteindre_feux_vert()
-    feux_jaune()
-    basic.pause(2000)
-    eteindre_feux_jaune()
-    feux_rouge2()
-    basic.pause(5000)
-    eteindre_feux_rouge()
     if (pieton == true) {
         feux_rouge2()
         eteindre_led_orange_pieton()
@@ -66,13 +56,23 @@ basic.forever(function () {
         clignoter_led_orange_pieton()
         eteindre_led_blanche_pieton()
         eteindre_feux_rouge()
+    } else {
+        led_orange_pieton()
+        Feux_vert()
+        basic.pause(5000)
+        eteindre_feux_vert()
+        feux_jaune()
+        basic.pause(2000)
+        eteindre_feux_jaune()
+        feux_rouge2()
+        basic.pause(5000)
+        eteindre_feux_rouge()
     }
 })
 basic.forever(function () {
     if (pieton == true) {
-        basic.pause(5000)
-        décompte = 30
         if (feux_rouge == true) {
+            décompte = 10
             for (let index = 0; index < 10; index++) {
                 basic.showNumber(décompte)
                 basic.pause(500)
